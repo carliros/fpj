@@ -5,8 +5,8 @@
 
 # 
 
-Presentación preparada para el Diplomado en .... materia Lenguajes de programación dictado por
-el Ing. Edson Terceros.
+Presentación preparada para el *Diplomado Actualización de Sistemas Version 4 (Postgrado-UDABOL)*,
+materia *Lenguajes de programación* dictado por el Ing. Edson Terceros.
 
 > Puedes ver la presentación online: [http://carliros.github.io/fpj/](http://carliros.github.io/fpj/)
 
