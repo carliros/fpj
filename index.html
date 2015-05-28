@@ -4,6 +4,25 @@
   <meta name="author" content="Carlos Gómez" />
   <title>Importancia de la Programación Funcional en Java</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
 <style>
   html { background-color: black; }
   body { background-color: white; border-radius: 12px}
@@ -30,7 +49,15 @@
   /* Figures are displayed full-page, with the caption on
      top of the image/video */
   figure {
-    background-color: black;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  figure > img {
+    width: 50% !important;
+    height: 50% !important;
+    margin-left: auto;
+    margin-right: auto;
   }
   figcaption {
     margin: 70px;
@@ -82,12 +109,228 @@
   <h2 class="author">Carlos Gómez</h2>
   <h3 class="date">28 de Mayo del 2015</h3>
 </section>
-<section id="esquema" class="slide level1">
-<h1>Esquema</h1>
+<section class="slide level1">
+
+<!--
+pandoc -t dzslides --template template.html -s slide.md -o index.html
+-->
+</section>
+<section id="propósito-de-la-presentación" class="slide level1">
+<h1>Propósito de la presentación</h1>
+<blockquote>
+<p>No pretendo ser exhaustivo en explicar el porque la programación funcional es importante en Java, pero si, almenos, despertar interés en este estudio y sentar algunas bases para continuar con la investigación.</p>
+</blockquote>
+<figure>
+<img src="images/disclaimer.gif" />
+</figure>
+</section>
+<section id="contenido-de-la-presentación" class="slide level1">
+<h1>Contenido de la presentación</h1>
 <ol>
-<li>Presentación personal</li>
-<li>Introducción</li>
+<li>Un poco de mi</li>
+<li>Un poco de Haskell</li>
+<li></li>
 </ol>
+</section>
+<section id="un-poco-de-mi" class="slide level1">
+<h1>Un poco de mi</h1>
+</section>
+<section class="slide level1">
+
+<h2 id="lic.-en-informática">Lic. en Informática</h2>
+</section>
+<section class="slide level1">
+
+<h2 id="trabajando-en-un-proyecto-usando-java">Trabajando en un proyecto usando Java</h2>
+<figure>
+<img src="images/illustration_back-end-front-end.png" />
+</figure>
+</section>
+<section class="slide level1">
+
+<h2 id="pero-amante-de-haskell">Pero amante de Haskell</h2>
+<figure>
+<img src="images/she-is-Haskell.jpg" />
+</figure>
+</section>
+<section id="un-poco-de-haskell" class="slide level1">
+<h1>Un poco de Haskell</h1>
+<p>Según <a href="http://en.wikipedia.org/wiki/Colleen_Haskell">Wikipedia</a></p>
+<ul>
+<li>Es actriz</li>
+<li>Es productora de televisión</li>
+<li>etc.</li>
+</ul>
+<p>Y según yo</p>
+<ul>
+<li>Es linda</li>
+<li>Una ves que la conoces, es defícil hacerla a un lado</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="en-términos-técnicos">En términos técnicos</h2>
+<blockquote>
+<p>Haskell es un <strong>Lenguaje</strong> de <strong>Programación Funcional</strong> <em>puro</em>, con <em>evaluación perezosa</em> y de propósito general. Peyton Jones</p>
+</blockquote>
+</section>
+<section class="slide level1">
+
+<p>Haskell provee:</p>
+<ul>
+<li>funciones de alto orden</li>
+<li>semántica no estricta</li>
+<li>tipado polimórfico estático</li>
+<li>tipos de datos algebraicos definidos por el usuario</li>
+<li>listas por comprensión</li>
+<li>sistema modular</li>
+<li>sistema monadico I/O</li>
+<li>tipos de datos primitivos para listas, arrays, números, ...</li>
+<li>etc.</li>
+</ul>
+</section>
+<section id="cosas-lindas-de-haskell" class="slide level1">
+<h1>Cosas lindas de Haskell</h1>
+<p>Veamos algunas cosas lindas de Haskell.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="queremos-convertir-todas-las-letras-de-una-cadena-a-mayusculasminusculas">Queremos convertir todas las letras de una cadena a mayusculas/minusculas</h2>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">aMayuscula ::</span> [<span class="dt">Char</span>] <span class="ot">-&gt;</span> [<span class="dt">Char</span>]
+aMayuscula [] <span class="fu">=</span> []
+aMayuscula (c<span class="fu">:</span>cs)
+    <span class="fu">=</span> (toUpper c) <span class="fu">:</span> aMayuscula cs</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">aMinuscula ::</span> [<span class="dt">Char</span>] <span class="ot">-&gt;</span> [<span class="dt">Char</span>]
+aMinuscula [] <span class="fu">=</span> []
+aMinuscula (c<span class="fu">:</span> cs)
+    <span class="fu">=</span> (toLower c) <span class="fu">:</span> aMinuscula cs</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="podemos-abstraer-la-repetición">Podemos abstraer la repetición</h2>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">mapeo1 ::</span> (<span class="dt">Char</span> <span class="ot">-&gt;</span> <span class="dt">Char</span>) <span class="ot">-&gt;</span> [<span class="dt">Char</span>] <span class="ot">-&gt;</span> [<span class="dt">Char</span>]
+mapeo1 f [] <span class="fu">=</span> []
+mapeo1 f (c<span class="fu">:</span>cs) <span class="fu">=</span> (f c) <span class="fu">:</span> mapeo1 f cs</code></pre>
+<p>Y nuestras nuevas funciones serian</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">aMayuscula1 <span class="fu">=</span> mapeo1 toUpper <span class="st">&quot;Carlos&quot;</span>
+aMinuscula2 <span class="fu">=</span> mapeo1 toLower <span class="st">&quot;Carlos&quot;</span></code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="pero-si-ahora-queremos-convertir-un-listado-de-números-a-un-listado-descriptivo-de-pares-p-e-impares-i">Pero si ahora queremos convertir un listado de números a un listado descriptivo de pares (P) e impares (I)</h2>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">parImpar ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">Char</span>]
+parImpar [] <span class="fu">=</span> []
+parImpar (n<span class="fu">:</span>ns)
+    <span class="fu">=</span> <span class="kw">if</span> (even n) <span class="kw">then</span> <span class="ch">&#39;P&#39;</span> <span class="fu">:</span> parImpar ns
+                  <span class="kw">else</span> <span class="ch">&#39;I&#39;</span> <span class="fu">:</span> parImpar ns</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="pero-queremos-reutilizar-la-función-mapeo-de-repetición.-entonces-necesitamos-parametrizar-el-tipo.">Pero queremos reutilizar la función mapeo de repetición. Entonces, necesitamos parametrizar el tipo.</h2>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">mapeo ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [b]
+mapeo f [] <span class="fu">=</span> []
+mapeo f (e<span class="fu">:</span>es) <span class="fu">=</span> (f e) <span class="fu">:</span> mapeo f es</code></pre>
+</section>
+<section class="slide level1">
+
+<p>Nuestras funciones ahora se reescribirian así:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">aMayuscula2 <span class="fu">=</span> mapeo toUpper <span class="st">&quot;Carlos&quot;</span>
+aMiniscula2 <span class="fu">=</span> mapeo toLower <span class="st">&quot;Carlos&quot;</span>
+
+<span class="ot">determinarTipoNumero ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Char</span>
+determinarTipoNumero n <span class="fu">=</span> <span class="kw">if</span> (even n) <span class="kw">then</span> <span class="ch">&#39;P&#39;</span>
+                                     <span class="kw">else</span> <span class="ch">&#39;I&#39;</span>
+parImpar2 <span class="fu">=</span> mapeo determinarTipoNumero [<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>]</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="la-función-map-de-haskell">La función <strong>map</strong> de Haskell</h2>
+<blockquote>
+<p>Lo <em>lindo</em> de <strong>Haskel</strong> es que la función <strong>mapeo</strong> es una función estandar de <strong>Haskell</strong>. Es llamada &quot;map&quot; y abstrae la repetición y la parametrización del tipo.</p>
+</blockquote>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">map<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [b]</code></pre>
+<p>Las ventajas son:</p>
+<ul>
+<li>Se abstrae la repetición</li>
+<li>Es más simple de usarlo</li>
+<li>Nos permite centrarnos en lo importante, la función que mapea de un valor a otro</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="un-ejemplo-no-tan-trivial-como-el-de-cadenas-y-números">Un ejemplo no tan trivial como el de cadenas y números</h2>
+<p>Tenemos una lista de empleados:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Empleado</span>
+    <span class="fu">=</span> <span class="dt">Empleado</span> {<span class="ot">nombre ::</span> <span class="dt">String</span>,<span class="ot"> sueldo ::</span> <span class="dt">Float</span>}
+    <span class="kw">deriving</span> <span class="dt">Show</span>
+
+<span class="ot">listaEmpleados ::</span> [<span class="dt">Empleado</span>]
+listaEmpleados
+    <span class="fu">=</span> [ <span class="dt">Empleado</span> <span class="st">&quot;Pedro&quot;</span> <span class="dv">500</span>
+      , <span class="dt">Empleado</span> <span class="st">&quot;Juan&quot;</span> <span class="dv">600</span>
+      , <span class="dt">Empleado</span> <span class="st">&quot;Jacobo&quot;</span> <span class="dv">700</span>]</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="queremos-realizar-el-incremento-del-8.5">Queremos realizar el incremento del 8.5%</h2>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">incremento ::</span> <span class="dt">Float</span>
+incremento <span class="fu">=</span> <span class="fl">8.5</span>
+
+<span class="ot">incrementarSueldo ::</span> <span class="dt">Empleado</span> <span class="ot">-&gt;</span> <span class="dt">Empleado</span>
+incrementarSueldo empleado
+  <span class="fu">=</span> empleado {sueldo <span class="fu">=</span> nuevoSueldo}
+  <span class="kw">where</span> nuevoSueldo
+    <span class="fu">=</span> <span class="kw">let</span> sueldo&#39; <span class="fu">=</span> sueldo empleado
+          inc     <span class="fu">=</span> (incremento <span class="fu">/</span> <span class="fl">100.0</span>) <span class="fu">*</span> sueldo&#39;
+      <span class="kw">in</span> sueldo&#39; <span class="fu">+</span> inc
+
+aplicarIncremento
+  <span class="fu">=</span> map incrementarSueldo listaEmpleados</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="la-función-filter">La función <strong>filter</strong></h2>
+<p>Al igual que la función <strong>map</strong> tenemos la función <strong>filter</strong> de Haskell.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">filter<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]</code></pre>
+<p>La función <strong>filter</strong> abstrae la</p>
+<ul>
+<li>Se abstrae la repetición</li>
+<li>Construye un nuevo listado basado en la función predicado</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="filtrar-empleados">Filtrar empleados</h2>
+<p>Continuando con el ejemplo anterior, queremos filtrar los empleados que ganaban más de 500.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">mayorA500 ::</span> <span class="dt">Empleado</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+mayorA500 empleado <span class="fu">=</span> sueldo empleado <span class="fu">&gt;</span> <span class="fl">500.0</span>
+
+aplicarFiltro <span class="fu">=</span> filter mayorA500 listaEmpleados</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="funciones-de-combinación-binaria">Funciones de combinación binaria</h2>
+<p>Otra de las funciones poderosas de Haskell son las funciones de combinación binaria:</p>
+<ul>
+<li><p><strong>foldr</strong>: combinación de un listado comenzando por la derecha (right)</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">foldr<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> b
+foldr f e [] <span class="fu">=</span> e
+foldr f e (x<span class="fu">:</span>xs) <span class="fu">=</span> f x (foldr f e xs)</code></pre></li>
+<li><p><strong>foldl</strong>: combinación de un listado comenzando por la izquierda (left)</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">foldl<span class="ot"> ::</span> (b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> b
+foldl f e [] <span class="fu">=</span> e
+foldl f e (x<span class="fu">:</span>xs) <span class="fu">=</span> foldl f (f e x) xs</code></pre></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="obtener-el-gasto-de-sueldos">Obtener el gasto de sueldos</h2>
+<p>Con el objetivo de usar la función <strong>foldr</strong> podemos hacer una función que sume los sueldos de los empleados y asi obtener el gasto de sueldos.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">sumarSueldos ::</span> <span class="dt">Empleado</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>
+sumarSueldos (<span class="dt">Empleado</span> _ sueldo1) sueldo2
+    <span class="fu">=</span> sueldo1 <span class="fu">+</span> sueldo2
+
+gastoSueldos <span class="fu">=</span> foldr sumarSueldos <span class="fl">0.0</span> listaEmpleados</code></pre>
 </section>
 <!-- {{{{ dzslides core
 #
