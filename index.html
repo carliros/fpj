@@ -50,14 +50,10 @@ code > span.er { color: #ff0000; font-weight: bold; }
      top of the image/video */
   figure {
     background-color: white;
-    margin-left: auto;
-    margin-right: auto;
   }
   figure > img {
     width: 50% !important;
     height: 50% !important;
-    margin-left: auto;
-    margin-right: auto;
   }
   figcaption {
     margin: 70px;
@@ -109,11 +105,15 @@ code > span.er { color: #ff0000; font-weight: bold; }
   <h2 class="author">Carlos Gómez</h2>
   <h3 class="date">28 de Mayo del 2015</h3>
 </section>
-<section class="slide level1">
-
-<!--
-pandoc -t dzslides --template template.html -s slide.md -o index.html
--->
+<section id="section" class="slide level1">
+<h1></h1>
+<p>Presentación preparada para el Diplomado en .... materia Lenguajes de programación dictado por el Ing. Edson Terceros.</p>
+<blockquote>
+<p>Puedes ver la presentación online: <a href="http://carliros.github.io/fpj/" class="uri">http://carliros.github.io/fpj/</a></p>
+</blockquote>
+<blockquote>
+<p>También puedes revisar los códigos usados en la presentación: <a href="https://github.com/carliros/fpj" class="uri">https://github.com/carliros/fpj</a></p>
+</blockquote>
 </section>
 <section id="propósito-de-la-presentación" class="slide level1">
 <h1>Propósito de la presentación</h1>
@@ -129,19 +129,18 @@ pandoc -t dzslides --template template.html -s slide.md -o index.html
 <ol>
 <li>Un poco de mi</li>
 <li>Un poco de Haskell</li>
-<li></li>
+<li>Cosas lindas de Haskell</li>
+<li>Programación funcional en Java</li>
+<li>Proyecto Lambda y Java 8</li>
+<li>Para continuar con la investigación</li>
 </ol>
 </section>
 <section id="un-poco-de-mi" class="slide level1">
 <h1>Un poco de mi</h1>
-</section>
-<section class="slide level1">
-
-<h2 id="lic.-en-informática">Lic. en Informática</h2>
-</section>
-<section class="slide level1">
-
-<h2 id="trabajando-en-un-proyecto-usando-java">Trabajando en un proyecto usando Java</h2>
+<ul>
+<li><p>Lic. en Informática</p></li>
+<li><p>Trabajando en un proyecto usando Java</p></li>
+</ul>
 <figure>
 <img src="images/illustration_back-end-front-end.png" />
 </figure>
@@ -173,10 +172,13 @@ pandoc -t dzslides --template template.html -s slide.md -o index.html
 <blockquote>
 <p>Haskell es un <strong>Lenguaje</strong> de <strong>Programación Funcional</strong> <em>puro</em>, con <em>evaluación perezosa</em> y de propósito general. Peyton Jones</p>
 </blockquote>
+<figure>
+<img src="images/haskell.png" />
+</figure>
 </section>
 <section class="slide level1">
 
-<p>Haskell provee:</p>
+<h2 id="haskell-provee">Haskell provee:</h2>
 <ul>
 <li>funciones de alto orden</li>
 <li>semántica no estricta</li>
@@ -192,6 +194,9 @@ pandoc -t dzslides --template template.html -s slide.md -o index.html
 <section id="cosas-lindas-de-haskell" class="slide level1">
 <h1>Cosas lindas de Haskell</h1>
 <p>Veamos algunas cosas lindas de Haskell.</p>
+<figure>
+<img src="images/Haskell_ideas.png" />
+</figure>
 </section>
 <section class="slide level1">
 
@@ -331,6 +336,291 @@ sumarSueldos (<span class="dt">Empleado</span> _ sueldo1) sueldo2
     <span class="fu">=</span> sueldo1 <span class="fu">+</span> sueldo2
 
 gastoSueldos <span class="fu">=</span> foldr sumarSueldos <span class="fl">0.0</span> listaEmpleados</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="resumen-del-lado-haskell">Resumen del lado Haskell</h2>
+<p>Lo que hasta ahora se ha visto son 3 funciones principales:</p>
+<ul>
+<li>map</li>
+<li>filter</li>
+<li>foldr</li>
+</ul>
+<p>Estas son funciones de alto orden: esto es funciones que trabajan con funciones.</p>
+<p>Y algunos beneficios son:</p>
+<ul>
+<li>Se abstrae la repetición</li>
+<li>Nos permite centrarnos en lo que importa más</li>
+</ul>
+<blockquote>
+<p>¿ Es posible hacer algo similar en Java ?</p>
+</blockquote>
+</section>
+<section id="programación-funcional-en-java" class="slide level1">
+<h1>Programación funcional en Java</h1>
+<blockquote>
+<p>Específicamente: ¿Es posible usar funciones de alto orden en Java?</p>
+</blockquote>
+<p>Si, es posible. Pero dependiendo de la version de Java, es más elegante y nativo hacerlo en una que en otras.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="section-1"></h2>
+<figure>
+<img src="images/HigherOrder.png" />
+</figure>
+</section>
+<section class="slide level1">
+
+<h2 id="retomando-nuestro-ejemplo">Retomando nuestro ejemplo</h2>
+<p>Tenemos nuesto objeto <em>Empleado</em>:</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Empleado {
+    <span class="kw">private</span> String nombre;
+    <span class="kw">private</span> Float sueldo;
+
+    <span class="co">//getters y setters</span>
+}</code></pre>
+</section>
+<section class="slide level1">
+
+<p>y tenemos nuestro listado de empleados:</p>
+<pre class="sourceCode java"><code class="sourceCode java">Empleado pedro = <span class="kw">new</span> <span class="fu">Empleado</span>();
+pedro.<span class="fu">setNombre</span>(<span class="st">&quot;Pedro&quot;</span>);
+pedro.<span class="fu">setSueldo</span>((<span class="dt">float</span>) <span class="dv">500</span>);
+
+Empleado juan = <span class="kw">new</span> <span class="fu">Empleado</span>();
+juan.<span class="fu">setNombre</span>(<span class="st">&quot;Juan&quot;</span>);
+juan.<span class="fu">setSueldo</span>((<span class="dt">float</span>) <span class="dv">600</span>);
+
+Empleado jacobo = <span class="kw">new</span> <span class="fu">Empleado</span>();
+jacobo.<span class="fu">setNombre</span>(<span class="st">&quot;Jacobo&quot;</span>);
+jacobo.<span class="fu">setSueldo</span>((<span class="dt">float</span>) <span class="dv">700</span>);
+
+empleados = <span class="kw">new</span> ArrayList&lt;Empleado&gt;();
+empleados.<span class="fu">add</span>(pedro);
+empleados.<span class="fu">add</span>(juan);
+empleados.<span class="fu">add</span>(jacobo);</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="incrementar-el-sueldo---version-1">Incrementar el sueldo - version 1</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">private</span> Empleado <span class="fu">incrementarSueldo</span>(Empleado e){
+    Float sueldo = e.<span class="fu">getSueldo</span>();
+    Float incrementoSueldo
+      = sueldo * (incremento / <span class="dv">100</span>);
+
+    e.<span class="fu">setSueldo</span>(sueldo + incrementoSueldo);
+
+    <span class="kw">return</span> e;
+}
+
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">incrementarSueldoEmpleados1</span>(){
+    <span class="kw">for</span> (Empleado e : empleados){
+        <span class="fu">incrementarSueldo</span>(e);
+    }
+}</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="abstrayendo-la-repetición">Abstrayendo la repetición</h2>
+<p>Nos creamos un utilitario que abstrae la repetición para listas, y que también soporta tipos genericos:</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> &lt;T, U&gt; List&lt;U&gt; <span class="fu">map</span>(
+  List&lt;T&gt; list, Map&lt;T, U&gt; function) {
+    List&lt;U&gt; mapList = <span class="kw">new</span> ArrayList&lt;U&gt;();
+
+    <span class="kw">for</span> (T t : list){
+        U u = function.<span class="fu">action</span>(t);
+
+        mapList.<span class="fu">add</span>(u);
+    }
+
+    <span class="kw">return</span> mapList;
+}</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="funciones-de-alto-orden">¿ Funciones de alto orden ?</h2>
+<p>El código <span class="math"><em>M</em><em>a</em><em>p</em> &lt; <em>T</em>, <em>U</em> &gt; <em>f</em><em>u</em><em>n</em><em>c</em><em>t</em><em>i</em><em>o</em><em>n</em></span> es una interface Java, y es utilizado para dar soporte a funciones de alto orden en Java. Estas interfaces pueden ser instanciadas cuando son utilizadas por el desarrollador.</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">interface</span> Map&lt;T, U&gt; {
+    U <span class="fu">action</span>(T t);
+}</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="reescribiendo-nuestro-ejemplo">Reescribiendo nuestro ejemplo</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">incrementarSueldoEmpleados2</span>(){
+    empleados = ListUtils.<span class="fu">getInstance</span>().<span class="fu">map</span>(
+      empleados, <span class="kw">new</span> Map&lt;Empleado, Empleado&gt;() {
+        <span class="fu">@Override</span>
+        <span class="kw">public</span> Empleado <span class="fu">action</span>(Empleado empleado) {
+            <span class="kw">return</span> <span class="fu">incrementarSueldo</span>(empleado);
+        }
+    });
+}</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="la-función-filter-1">La función <strong>filter</strong></h2>
+<p>Siguiendo la misma idea que el <strong>map</strong>, definimos:</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> &lt;T&gt; List&lt;T&gt; <span class="fu">filter</span>(
+  List&lt;T&gt; list, Filter&lt;T&gt; function){
+    List&lt;T&gt; filterList = <span class="kw">new</span> ArrayList&lt;T&gt;();
+
+    <span class="kw">for</span> (T t : list){
+        <span class="kw">if</span> (function.<span class="fu">action</span>(t))
+            filterList.<span class="fu">add</span>(t);
+    }
+
+    <span class="kw">return</span> filterList;
+}</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="la-interface-filter">La interface <strong>Filter</strong></h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">interface</span> Filter&lt;T&gt; {
+    <span class="dt">boolean</span> <span class="fu">action</span>(T t);
+}</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="aplicar-filtro-a-los-empleados">Aplicar filtro a los empleados</h2>
+<p>Filtrar los empleados con sueldo mayor a 500.</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">mostrarEmpleadosConSueldoMayorA1</span>(
+  Float sueldoBase){
+
+  List&lt;Empleado&gt; listaFiltrada
+    = ListUtils.<span class="fu">getInstance</span>().<span class="fu">filter</span>(
+        empleados, <span class="kw">new</span> Filter&lt;Empleado&gt;() {
+          <span class="fu">@Override</span>
+          <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">action</span>(Empleado empleado) {
+            <span class="kw">return</span> empleado
+                    .<span class="fu">getSueldo</span>()
+                    .<span class="fu">compareTo</span>(sueldoBase) &gt; <span class="dv">0</span>;
+          }
+        });
+}</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="recapitulando-las-cosas-revisadas">Recapitulando las cosas revisadas</h2>
+<p>Ventajas:</p>
+<ul>
+<li>Podemos pasar acciones a traves de las interfaces de Java.</li>
+<li>Se esta abstrayendo las repeticiones en un utilitario de funciones.</li>
+</ul>
+<p>Desventajas:</p>
+<ul>
+<li>El código no es muy elegante y es dificil su lectura. <strong>Proyecto Lambda de Java 8 al rescate!!</strong></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="section-2"></h2>
+<figure>
+<img src="images/JavaLam.jpg" />
+</figure>
+</section>
+<section id="proyecto-lambda-y-java-8" class="slide level1">
+<h1>Proyecto Lambda y Java 8</h1>
+<p>EL proyecto lambda da soporte tanto en librerias y sintaxis de Java para mejorar el manejo/uso de caracteristicas de programación funcional. Por ejemplo:</p>
+<ul>
+<li>Expresiones lambda</li>
+<li>Operaciones sobre listas (Stream, Iterators). Esto nos permite hacer uso de funciones como <strong>map</strong>, <strong>filter</strong>, <strong>reduce</strong>, generadores, etc.</li>
+<li>Un tipo de dato <strong>Optional</strong> (o tipo de dato <strong>Maybe</strong> de Haskell).</li>
+<li>otros.</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="reescribiendo-los-ejemplos-anteriores">Reescribiendo los ejemplos anteriores</h2>
+<p>Incrementando el sueldo a los empleados usando solo <strong>expresiones lambda</strong></p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">incrementarSueldoEmpleados3</span>(){
+  empleados = ListUtils.<span class="fu">getInstance</span>()
+    .<span class="fu">map</span>(empleados, 
+          empleado -&gt; <span class="fu">incrementarSueldo</span>(empleado));
+}</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="reescribiendo-los-ejemplos-anteriores-1">Reescribiendo los ejemplos anteriores</h2>
+<p>Incrementando el sueldo a los empleados usando <strong>iteradores</strong></p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">incrementarSueldoEmpleados4</span>(){
+  empleados.<span class="fu">forEach</span>(<span class="kw">this</span>::incrementarSueldo);
+}</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="reescribiendo-los-ejemplos-anteriores-2">Reescribiendo los ejemplos anteriores</h2>
+<p>Mostrar empleados con sueldo mayor a ... aplicar filtro</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">mostrarEmpleadosConSueldoMayorA2</span>(
+ Float sueldoBase){
+  List&lt;Empleado&gt; listaFiltrada 
+    = ListUtils.<span class="fu">getInstance</span>().<span class="fu">filter</span>(empleados, 
+        empleado -&gt; empleado
+                     .<span class="fu">getSueldo</span>()
+                     .<span class="fu">compareTo</span>(sueldoBase) &gt; <span class="dv">0</span>);
+  <span class="fu">imprimirEmpleados3</span>(listaFiltrada);
+}</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="reescribiendo-los-ejemplos-anteriores-3">Reescribiendo los ejemplos anteriores</h2>
+<p>Mostrar el total de sueldos, operación binaria (fold)</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> Float <span class="fu">calcularTotalSueldos</span>(){
+  Float sueldos 
+    = empleados
+       .<span class="fu">stream</span>()
+       .<span class="fu">map</span>(empleado 
+             -&gt; empleado.<span class="fu">getSueldo</span>())
+       .<span class="fu">reduce</span>((<span class="dt">float</span>) <span class="dv">0</span>, 
+          (sumatoria, sueldo) 
+             -&gt; sumatoria + sueldo);
+
+  <span class="kw">return</span> sueldos;
+}</code></pre>
+</section>
+<section class="slide level1">
+
+<h2 id="resumen-del-lado-java">Resumen del lado Java</h2>
+<ul>
+<li>Es posible construir funciones de alto-orden en Java usando interfaces</li>
+<li>Usando funciones de alto-orden se abstrae las repeticiones, y permite centrarse en la función que procesa datos.</li>
+<li>Para version anteriores a Java 8, la sintaxis para construir funciones de alto-orden no es amigable.</li>
+<li>Pero en Java 8, el proyecto Lambda provee muchas mejoras.</li>
+</ul>
+</section>
+<section id="para-continuar-con-la-investigación" class="slide level1">
+<h1>Para continuar con la investigación</h1>
+<ul>
+<li>Se puede revisar el paper <a href="http://www.cse.chalmers.se/~rjmh/Papers/whyfp.html">Why Functional Programming Matters</a> que explica otros elementos importantes de la programación funcional.</li>
+<li>Se puede revisar <a href="www.scala-lang.org/">Scala</a>, un lenguaje de programación orientado a objetos y funcional.</li>
+<li>También se puede revisar la presentación de <a href="typeclassopedia.bitbucket.org">Typeclassopedia de Scala</a> donde se intenta hacer una replica del <a href="https://wiki.haskell.org/Typeclassopedia">Typeclassopedia de Haskell</a>. Las funciones de map/fold son instancias de clases como Functor/Foldable y tienen un comportamiendo diferente para otros tipos que no son listas en Haskell.</li>
+</ul>
+</section>
+<section id="para-continuar-con-la-investigación-1" class="slide level1">
+<h1>Para continuar con la investigación</h1>
+<ul>
+<li>Se puede seguir revisando como hacer sentencias de alto-orden. Por ejemplo, en Haskell el if-the-else es una expresión, asi como lo es un función. Pero en Java se hace diferencia de una sentencia como el if-then-else, y la llamada a una función que vendria a ser una expresión. Y las sentencias solo se pueden usar dentro de funciones o métodos. Hasta ahora se ha revisado que si es posible hacer funciones de alto-orden, pero <strong>¿es posible hacer sentecias de alto-orden? ¿Se puede usar el if-then-else sin necesidad que este dentro de un método?</strong></li>
+</ul>
+</section>
+<section id="para-continuar-con-la-investigación-2" class="slide level1">
+<h1>Para continuar con la investigación</h1>
+<ul>
+<li><p>Para dar soporte a expresiones lambda en versiones anteriores a Java 8 se puede revisar:</p>
+<ul>
+<li><p>El proyecto <a href="https://github.com/orfjackal/retrolambda">RetroLambda</a></p></li>
+<li><p>El proyecto <a href="http://www.functionaljava.org/">FunctionalJava</a></p></li>
+</ul></li>
+</ul>
+</section>
+<section id="section-3" class="slide level1">
+<h1></h1>
+<figure>
+<img src="images/finish-line.jpg" />
+</figure>
+<!--
+pandoc -t dzslides --template template.html -s slide.md -o index.html
+-->
 </section>
 <!-- {{{{ dzslides core
 #
