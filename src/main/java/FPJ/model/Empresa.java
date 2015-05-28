@@ -1,7 +1,7 @@
 package FPJ.model;
 
-import FPJ.Utils.Functor;
-import FPJ.Utils.Mapping;
+import FPJ.Utils.Map;
+import FPJ.Utils.ListUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,17 +17,17 @@ public class Empresa {
     private void initialize(){
         Empleado pedro = new Empleado();
         pedro.setNombre("Pedro");
-        pedro.setSueldo(new Float(500));
+        pedro.setSueldo((float) 500);
 
         Empleado juan = new Empleado();
         juan.setNombre("Juan");
-        juan.setSueldo(new Float(600));
+        juan.setSueldo((float) 600);
 
         Empleado jacobo = new Empleado();
         jacobo.setNombre("Jacobo");
-        jacobo.setSueldo(new Float(700));
+        jacobo.setSueldo((float) 700);
 
-        empleados = new ArrayList();
+        empleados = new ArrayList<Empleado>();
         empleados.add(pedro);
         empleados.add(juan);
         empleados.add(jacobo);
@@ -43,17 +43,22 @@ public class Empresa {
     }
 
     public void incrementarSueldoEmpleados2(){
-        empleados = Mapping.getInstance().map(empleados, new Functor<Empleado, Empleado>() {
+        empleados = ListUtils.getInstance().map(empleados, new Map<Empleado, Empleado>() {
             @Override
-            public Empleado fmap(Empleado empleado) {
+            public Empleado action(Empleado empleado) {
                 return incrementarSueldo(empleado);
             }
         });
     }
 
+    public void mostrarEmpleadosConSueldoMayorA(Float sueldoBase){
+        List<Empleado> listaFiltrada = ListUtils.getInstance().filter(
+                empleados, empleado -> empleado.getSueldo().compareTo(sueldoBase) > 0);
+        imprimirEmpleados3(listaFiltrada);
+    }
+
     public void incrementarSueldoEmpleados3(){
-        
-        empleados = Mapping.getInstance().map(empleado -> incrementarSueldo(empleado));
+        empleados.forEach(this::incrementarSueldo);
     }
     
     private Empleado incrementarSueldo(Empleado e){
@@ -72,13 +77,17 @@ public class Empresa {
     }
 
     public void imprimirEmpleados2(){
-        Mapping.getInstance().map(empleados, new Functor<Empleado, Object>() {
+        ListUtils.getInstance().map(empleados, new Map<Empleado, Object>() {
             @Override
-            public Object fmap(Empleado empleado) {
+            public Object action(Empleado empleado) {
                 System.out.println(empleado.getNombre() + " gana " + empleado.getSueldo());
                 
                 return null;
             }
         });
+    }
+
+    public void imprimirEmpleados3(List<Empleado> lista){
+        ListUtils.getInstance().mapM_(lista, empleado -> System.out.println(empleado.getNombre() + " gana " + empleado.getSueldo()));
     }
 }
