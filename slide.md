@@ -629,9 +629,13 @@ public Float calcularTotalSueldos(){
     - El proyecto [FunctionalJava](http://www.functionaljava.org/)
 
 
-#
+# Llegamos al final
+
+- Puedes ver la presentación online: [http://carliros.github.io/fpj/](http://carliros.github.io/fpj/)
+- También puedes revisar los códigos usados en la presentación: [https://github.com/carliros/fpj](https://github.com/carliros/fpj)
 
 ![](images/finish-line.jpg)
+
 
 <!--
 pandoc -t dzslides --template template.html -s slide.md -o index.html
